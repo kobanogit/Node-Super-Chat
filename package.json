@@ -1,0 +1,12 @@
+{
+    "name": "Super-chat",
+    "version": "0.1.0",
+    "description": "A simple chat client using socket.io",
+    "author": "Kobano",
+    "private": true,
+    "license": "BSD",
+    "dependencies": {
+        "socket.io": "~2",
+        "express": "~4.16"
+    }
+}
