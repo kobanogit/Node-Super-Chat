@@ -6,9 +6,14 @@
     </head>
 
     <body>
-        <h1>Communication avec socket.io !</h1>
+        <h1>Le Super Chat Temps Réel !</h1>
 
-        <p><input type="button" value="Embêter le serveur" id="poke" /></p>
+        <p>
+            <input type="text" value="Mon_message" id="message">
+            <input type="button" value="Envoyer" id="envoiMessage" />
+        </p>
+
+        <div id="Content"></div>
 
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -23,12 +28,20 @@
 
             // On affiche une boîte de dialogue quand le serveur nous envoie un "message"
             socket.on('message', function(message) {
-                alert('Le serveur a un message pour vous : ' + message);
+                // alert('Le serveur a un message pour vous : ' + message);
+                // $('#Content').append('<p>' + message + '</p>');
+            })
+
+            socket.on('chat', function(message) {
+                // alert('Le serveur a un message pour vous : ' + message);
+                $('#Content').append('<p>' + message + '</p>');
             })
 
             // Lorsqu'on clique sur le bouton, on envoie un "message" au serveur
-            $('#poke').click(function () {
-                socket.emit('message', 'Salut serveur, ça va ?');
+            $('#envoiMessage').click(function () {
+                var mess = $("#message").val();
+                console.log(mess);
+                socket.emit('chat', mess);
             })
         </script>
     </body>
